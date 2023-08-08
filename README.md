@@ -2,9 +2,9 @@
 
 nodejs
 
-### HOW IMPORT AND EXPORT
+# HOW IMPORT AND EXPORT
 
-# Default Export::
+### Default Export::
 
 ```
 const myName=()=>{
@@ -14,7 +14,7 @@ export default myName;
 
 ```
 
-# NAMED EXPORT::
+### NAMED EXPORT::
 
 ```
 const MyDetails=()=>{
@@ -28,7 +28,7 @@ export const {name,lastName}=MyDetails
 
 ```
 
-### HOW TO TAKE INPUT::
+# HOW TO TAKE INPUT::
 
 ```
 let args=process.argv;
