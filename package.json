@@ -19,5 +19,8 @@
   "bugs": {
     "url": "https://github.com/niteshyadav7/backend_revise/issues"
   },
-  "homepage": "https://github.com/niteshyadav7/backend_revise#readme"
+  "homepage": "https://github.com/niteshyadav7/backend_revise#readme",
+  "dependencies": {
+    "express": "^4.18.2"
+  }
 }
