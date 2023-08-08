@@ -1,0 +1,23 @@
+{
+  "name": "backend_revise",
+  "version": "1.0.0",
+  "description": "Backend",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/niteshyadav7/backend_revise.git"
+  },
+  "keywords": [
+    "nodejs",
+    "javascript"
+  ],
+  "author": "Nitesh Yadav",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/niteshyadav7/backend_revise/issues"
+  },
+  "homepage": "https://github.com/niteshyadav7/backend_revise#readme"
+}
