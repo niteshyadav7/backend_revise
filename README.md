@@ -23,10 +23,16 @@ const MyDetails=()=>{
     return "Nitesh";
 }
 export {MyDetails}
-
-or
-
+      OR
 export const {name,lastName}=MyDetails
 
+```
 
+### HOW TO TAKE INPUT::
+
+```
+let args=process.argv;
+args.slice(2);
+        OR
+const args=process.argv.slice(2);
 ```
