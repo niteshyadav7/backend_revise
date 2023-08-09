@@ -8,9 +8,9 @@ const app = express();
 app.use(express.json());
 
 // create
-app.post("/api/person", async(req, res) => {
+app.post("/api/person", async (req, res) => {
   try {
-    const user =await User.create(req.body);
+    const user = await User.create(req.body);
     res.send("Data Added!");
   } catch (err) {
     res.status(404).json({
@@ -24,11 +24,12 @@ app.post("/api/person", async(req, res) => {
 
 // getAllData
 
-app.get("/api/person", async(req, res) => {
+app.get("/api/person", async (req, res) => {
   try {
-    const user =await User.find();
+    const user = await User.find();
     res.status(200).json({
       status: "success",
+      result: user.length,
       data: [
         {
           user,
@@ -47,7 +48,59 @@ app.get("/api/person", async(req, res) => {
 
 // findById
 
+app.get("/api/person/:id", async (req, res) => {
+  try {
+    // const id = req.params.id;
+    const user = await User.findById(req.params.id);
+    res.status(200).json({
+      status: "success",
+      data: [
+        {
+          user,
+        },
+      ],
+    });
+  } catch (err) {
+    res.status(404).json({
+      status: "fail",
+      data: {
+        message: err,
+      },
+    });
+  }
+});
 
+// patch data
+
+app.patch("/api/person/:id", async (req, res) => {
+  try {
+    const user = await User.findByIdAndUpdate(req.params.id, req.body);
+    res.send("Update is Done!");
+  } catch (err) {
+    res.status(404).json({
+      status: "fail",
+      data: {
+        message: err,
+      },
+    });
+  }
+});
+
+// delete data
+
+app.delete("/api/person/:id", async (req, res) => {
+  try {
+    const user = await User.findByIdAndDelete(req.params.id);
+    res.send("Delete Done!");
+  } catch (err) {
+    res.status(404).json({
+      status: "fail",
+      data: {
+        message: err,
+      },
+    });
+  }
+});
 
 // database
 Connection("mongodb://127.0.0.1:27017/test");
