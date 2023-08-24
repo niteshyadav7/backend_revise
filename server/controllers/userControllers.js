@@ -46,7 +46,33 @@ export const getUserOne = async (req, res) => {
 };
 
 export const updateUser = async (req, res) => {
-  const params = req.params.id;
-  const user = await User.findByIdAndUpdate(params);
-  
+  try {
+    const params = req.params.id;
+    const user = await User.findByIdAndUpdate(params);
+    res.status(202).json({
+      data: {
+        user,
+      },
+    });
+  } catch (err) {
+    res.status(404).json({
+      result: err,
+    });
+  }
+};
+
+export const deleteUser = async (req, res) => {
+  try {
+    const params = req.params.id;
+    const user = await User.findByIdAndDelete(params);
+    res.status(202).json({
+      data: {
+        user,
+      },
+    });
+  } catch (err) {
+    res.status(404).json({
+      result: err,
+    });
+  }
 };
