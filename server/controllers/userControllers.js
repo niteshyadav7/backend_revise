@@ -28,3 +28,25 @@ export const getUser = async (req, res) => {
     });
   }
 };
+
+export const getUserOne = async (req, res) => {
+  try {
+    const params = req.params.id;
+    const user = await User.findById(params);
+    res.status(200).json({
+      data: {
+        user,
+      },
+    });
+  } catch (err) {
+    res.status(404).json({
+      result: err,
+    });
+  }
+};
+
+export const updateUser = async (req, res) => {
+  const params = req.params.id;
+  const user = await User.findByIdAndUpdate(params);
+  
+};
