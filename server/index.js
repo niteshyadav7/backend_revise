@@ -8,11 +8,16 @@ import morgan from "morgan";
  *  2. ANY WHERE.
  */
 import router from "./routes/fsRouter.js";
+import ConnectionDatabase from "./config/db.js";
 
 dotenv.config();
 
 const PORT = process.env.PORT;
 const HOST_NAME = process.env.HOST_NAME;
+const DB = process.env.MONGO;
+
+
+// console.log(DB);
 
 const app = express();
 app.use(morgan("dev"));
@@ -27,3 +32,5 @@ app.listen(PORT, () => {
     console.log(err);
   }
 });
+
+ConnectionDatabase(DB);
