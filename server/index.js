@@ -1,68 +1,28 @@
-import express, { json } from "express";
-import dotenv from "dotenv"; //this line make the .env file enables
+import express from "express";
+import dotenv from "dotenv";
 import cors from "cors";
-import fs from "fs";
 import morgan from "morgan";
+// LOCAL import should be in fullName:⛔MUST BE fullName with extension
+/**
+ * NOTE:1. MUST BE THE LOCAL IMPORT WITH THE EXTENSION
+ *  2. ANY WHERE.
+ */
+import router from "./routes/fsRouter.js";
 
-dotenv.config(); // configuring the dotenv
+dotenv.config();
 
 const PORT = process.env.PORT;
-const HOSTNAME = process.env.HOST_NAME;
+const HOST_NAME = process.env.HOST_NAME;
 
 const app = express();
-app.use(cors());
-app.use(express.json());
 app.use(morgan("dev"));
-
-app.get("/", (req, res) => {
-  res.status(200).json({ message: "hello" });
-});
-
-const jsonData = JSON.parse(fs.readFileSync("./data/data.json"));
-app.post("/api/person", (req, res) => {
-  try {
-    const newPerson = Object.assign({ id: new Date() }, req.body);
-    jsonData.push(newPerson);
-    fs.writeFileSync("./data/data.json", JSON.stringify(jsonData));
-    res.send("DONE!");
-    // res.status(200).json({
-    //   data: {
-    //     jsonData,
-    //   },
-    // });
-  } catch (err) {
-    res.status(404).json({
-      data: err,
-    });
-  }
-});
-app.get("/api/person", (req, res) => {
-  try {
-    res.status(200).json({
-      data: {
-        jsonData,
-      },
-    });
-  } catch (err) {
-    res.status(404).json({
-      data: err,
-    });
-  }
-});
-app.get("/api/person/:id", (req, res) => {
-  console.log(req.params);
-  const id = req.params.id;
-  const person = jsonData.find((el) => el.id === id);
-  res.status(200).json({
-    data: {
-      person,
-    },
-  });
-});
+app.use(express.json());
+app.use(cors());
+app.use("/api", router);
 
 app.listen(PORT, () => {
   try {
-    console.log(`server running on ${HOSTNAME}:${PORT}...`);
+    console.log(`server running on ${HOST_NAME}:${PORT} `);
   } catch (err) {
     console.log(err);
   }
