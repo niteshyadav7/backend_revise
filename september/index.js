@@ -1,14 +1,14 @@
+import process from "process";
+
 import { addtion, substraction, multiplication } from "./componet.js";
 
 import division from "./componet.js";
 
-const process=require("process")
+const args = process.argv.slice(2);
+console.log(args);
 
-console.log(process.argv);
+console.log(addtion(parseInt(args[0]), parseInt(args[1])));
+console.log(substraction(parseInt(args[0]), parseInt(args[1])));
+console.log(multiplication(parseInt(args[0]), parseInt(args[1])));
 
-
-console.log(addtion(2, 3));
-console.log(substraction(2, 3));
-console.log(multiplication(2, 3));
-
-console.log(division(10, 3));
+console.log(division(parseInt(args[0]), parseInt(args[[1]])));
